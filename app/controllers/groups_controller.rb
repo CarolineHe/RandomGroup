@@ -62,6 +62,37 @@ class GroupsController < ApplicationController
     end
   end
 
+  def random_people
+      @people = Person.all
+      @groups = Group.all
+
+        maxByGroup = (@people.size/@groups.size).ceil+1
+  # on vide les groupes_id des personnes
+  @people.each do |person|
+      person.group_id = nil
+      person.save
+  end
+
+  id_group = []
+  @groups.each do |group|
+      id_group << group.id
+  end
+
+  @people.each do |i|
+      random_group = id_group.sample
+      i.group_id = random_group
+  i.save
+      if @people.where(group_id: random_group).size == maxByGroup
+          id_group.delete(random_group)
+      end
+
+  end
+redirect_to root_path
+  end
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
@@ -72,5 +103,6 @@ class GroupsController < ApplicationController
     def group_params
       params.require(:group).permit(:name, :salle, :tache)
     end
+
 
 end
