@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :minimum, only: [:random_people]
 
   # GET /groups
   # GET /groups.json
@@ -104,5 +105,10 @@ redirect_to root_path
       params.require(:group).permit(:name, :salle, :tache)
     end
 
+    def minimum
+        if Group.all.size < 2
+            redirect_to root_path, notice: 'you must create two groups minimum'
+    end
+end
 
 end
