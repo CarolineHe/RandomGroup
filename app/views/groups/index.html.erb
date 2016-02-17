@@ -30,7 +30,7 @@
 </div>
 <div  class="panel  panel-info panel-body">
     <%group.people.each do |person|%>
-    <div><h4><%=person.name%></h4></div>
+    <div><h4><%=person.name%> <%=best_in_place person, :sensei, :as => :select, :collection => {"false" => " => Sensei", "true" => ""}%> </h4></div>
     <%end%>
 </div>
 <div></div>
