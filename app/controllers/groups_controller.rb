@@ -64,6 +64,13 @@ class GroupsController < ApplicationController
   end
 
   def random_people
+  @people = Person.all
+
+  @people.each do |person|
+   person.sensei = false
+   person.save
+  end
+
      idperson = Person.all.map{|x| x.id}
      if Group.all.count>0
        while idperson.count >0
@@ -78,9 +85,9 @@ class GroupsController < ApplicationController
          end
        end
        else
-         redirect_to :root, notice: "ther have to be a least one group !"
+         redirect_to :root, notice: "You must create two groups minimum !"
        end
-       redirect_to :root, notice: "all has been randomized!!!"
+       redirect_to :root, notice: "Everybody has been randomized!!!"
    end
 
 
