@@ -32,9 +32,9 @@
     <% @people.each do |person| %>
       <% if person.group_id == group.id %>
       <% if person.sensei == true %>
-        <div class="panel"><span class="sensei"><%= person.name %></span><%= best_in_place person, :sensei, :as => :select, :collection => {"1" => " => sensei", "2" => ""} %></div>
+        <div class="panel"><span class="sensei"><h4><%= person.name %></span><%= best_in_place person, :sensei, :as => :select, :collection => {"1" => " => sensei", "2" => ""} %></h4></div>
         <% else %>
-        <div class="panel panel"><%= person.name %><%= best_in_place person, :sensei, :as => :select, :collection => {"1" => " => sensei"} %></div>
+        <div class="panel panel"><h4><%= person.name %><%= best_in_place person, :sensei, :as => :select, :collection => {"1" => " => sensei"} %></h4></div>
 
 
         <% end %>
